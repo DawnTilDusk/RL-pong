@@ -4,7 +4,7 @@
 
 ## 自叙
 这个仓库是作为笨人练习RL使用的，包含了从基础的Q-learning到复杂的A2C的实现。
-实际上是学习https://hrl.boyuai.com/chapter/1/%E5%88%9D%E6%8E%A2%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0这本书的一个实践
+实际上是学习[动手学强化学习](https://hrl.boyuai.com/chapter/1/%E5%88%9D%E6%8E%A2%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0)这本书的一个实践
 欢迎大家参考，探讨RL相关的一些算法原理以及训练的心得
 每个版本都有详细的README.md，说明其核心特点、实现原理、代码架构以及快速开始指南。
 

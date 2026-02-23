@@ -128,4 +128,4 @@ python pong_bot_A2C.py
 ## 注意事项
 
 *   运行时请确保当前目录下包含 `bg.png` 背景图片文件，否则环境将使用纯色背景。
-*   部分版本支持按键交互（如 `F2` 切换人机/自动模式，`F4` 手动保存快照），具体请参考各版本的 README 说明。
+*   部分版本支持按键交互（如 `F2` 切换人机/自动模式，`F4` 手动保存快照），具体请参考各版本的 README 说明：[v1-5-qlearning/README.md](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v1-5-qlearning/README.md)、[v6-DQN/README.md](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v6-DQN/README.md)、[v7-A2C/README.md](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v7-A2C/README.md)。项目远程仓库：[RL-pong](https://github.com/DawnTilDusk/RL-pong.git)。

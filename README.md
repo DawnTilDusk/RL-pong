@@ -2,13 +2,13 @@
 
 这是一个包含多种强化学习算法（Q-learning, DQN, A2C）用于训练 Pong 游戏智能体的仓库。本项目提供了完整的训练环境、算法实现以及可视化工具。
 
-## 自叙
-这个仓库是作为笨人练习RL使用的，包含了从基础的Q-learning到复杂的A2C的实现。
-实际上是学习[动手学强化学习](https://hrl.boyuai.com/chapter/1/%E5%88%9D%E6%8E%A2%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0)这本书的一个实践
-欢迎大家参考，探讨RL相关的一些算法原理以及训练的心得
-每个版本都有详细的README.md，说明其核心特点、实现原理、代码架构以及快速开始指南。
+## 一、自叙
+>这个仓库是作为笨人练习RL使用的，包含了从基础的Q-learning到复杂的A2C的实现。
+>实际上是学习[动手学强化学习](https://hrl.boyuai.com/chapter/1/%E5%88%9D%E6%8E%A2%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0)这本书的一个实践
+>欢迎大家参考，探讨RL相关的一些算法原理以及训练的心得
+>每个版本都有详细的README.md，说明其核心特点、实现原理、代码架构以及快速开始指南。
 
-### 环境
+### 1. 环境
 > 其实本来使用openai自带的gym环境也是可行的，但是出于懒得学习接口，避免因为调用接口涉及到的一系列顺序问题，以及对“纯粹性”的执着，笨人决定自己用pygame实现一个环境，也同时体验了一下pygame的常用接口。
 
 > 我创建了一个规则机器人Bot_0作为陪练（限速平移板，上帝视角，板心总是跟着球心走）
@@ -20,7 +20,7 @@
 > 这里长按上或者下会提供一个相应方向的加速度，直至达到速度上限
 > 不移动则提供运动方向相反的加速度，直至速度为零
 
-### 版本迭代
+### 2. 版本迭代
 
 #### v1-v5都是q-learning算法
 基于q数组的离散更新，每个状态-动作对都是一个高维的键值，对应一个q值，通过更新q值来学习最优策略。
@@ -66,7 +66,7 @@ policy-based属于主流RL算法，使用起来果然非常有效
 同一个奖励函数，虽然单回合的训练速率下降了，但是10w回合之后胜率就到达了100%并且能够保持，
 切换为手动模式也很难打过（即使陪练的智能体依然是单纯的规则机器人Bot_0）
 
-## 整体结构
+## 二、整体结构
 
 仓库主要包含三个核心版本的环境与算法实现：
 
@@ -74,7 +74,7 @@ policy-based属于主流RL算法，使用起来果然非常有效
 *   **pongenv-v6-DQN**: 基于 PyTorch 的 Deep Q-Network (DQN) 实现。引入了神经网络、经验回放等机制，支持连续状态空间。
 *   **pongenv-v7-A2C**: 基于 PyTorch 的 Advantage Actor-Critic (A2C) 实现。使用策略网络与价值网络，支持更高效的训练。
 
-## 快速开始
+## 三、快速开始
 
 ### 1. 安装依赖
 
@@ -108,7 +108,7 @@ cd pongenv-v7-A2C
 python pong_bot_A2C.py
 ```
 
-## 版本概览与入口
+## 四、版本概览与入口
 
 | 版本 | 算法 | 目录 | 入口脚本 | 核心特点 |
 | :--- | :--- | :--- | :--- | :--- |
@@ -116,7 +116,7 @@ python pong_bot_A2C.py
 | **v6** | DQN | `pongenv-v6-DQN` | `pong_bot_DQN.py` | 连续状态空间，神经网络近似 Q 值，支持经验回放与 Target Network，HUD 实时统计。 |
 | **v7** | A2C | `pongenv-v7-A2C` | `pong_bot_A2C.py` | Actor-Critic 架构，同时训练策略与价值网络，支持 On-policy 更新。 |
 
-## 保存地址及说明
+## 五、保存地址及说明
 
 训练过程中的模型权重、Q 表以及历史统计数据默认保存在各版本目录下的 `history` 文件夹或根目录中。
 
@@ -125,7 +125,11 @@ python pong_bot_A2C.py
     *   DQN 和 A2C 版本会自动在当前脚本所在目录下的 `history` 文件夹中创建备份（已配置为相对路径）。
     *   备份内容包括：带时间戳的模型权重文件、训练曲线图表等。
 
-## 注意事项
+## 六、注意事项
 
 *   运行时请确保当前目录下包含 `bg.png` 背景图片文件，否则环境将使用纯色背景。
-*   部分版本支持按键交互（如 `F2` 切换人机/自动模式，`F4` 手动保存快照），具体请参考各版本的 README 说明：[v1-5-qlearning/README.md](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v1-5-qlearning/README.md)、[v6-DQN/README.md](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v6-DQN/README.md)、[v7-A2C/README.md](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v7-A2C/README.md)。项目远程仓库：[RL-pong](https://github.com/DawnTilDusk/RL-pong.git)。
+*   部分版本支持按键交互（如 `F2` 切换人机/自动模式，`F4` 手动保存快照），具体请参考各版本的 README 说明：
+    *   [v1-5-qlearning/README.md](v1-5-qlearning/README.md)
+    *   [v6-DQN/README.md](v6-DQN/README.md)
+    *   [v7-A2C/README.md](v7-A2C/README.md)。
+*   项目远程仓库：[RL-pong](https://github.com/DawnTilDusk/RL-pong.git)。

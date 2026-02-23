@@ -62,3 +62,35 @@
     *   `ball_x_dir`, `ball_y_dir`: 仅记录方向（0或1）。
     *   `l_y_diff`, `r_y_diff`: 仅记录球与挡板中心的相对高度差。
 *   **局限性**: 由于状态过于简略，智能体无法感知球的具体位置和速度大小，只能做出简单的反应式动作，胜率上限较低（约 35%）。
+
+## 启动与控制
+
+- v3 启动：
+  - 在目录下执行 `python pongenv-v3.py` [pongenv-v3.py](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v1-5-qlearning/pongenv-v3.py#L423-L446)
+  - 左侧挡板可通过方向键控制速度（↑/↓ 或 W/S）[pongenv-v3.py](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v1-5-qlearning/pongenv-v3.py#L435-L441)
+  - 不支持手动模式切换；默认训练右侧 Bot_Q
+- v4 启动与切换：
+  - 在目录下执行 `python pongenv-v4.py`，运行时可切换手动模式 [pongenv-v4.py](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v1-5-qlearning/pongenv-v4.py#L596-L626)
+  - 手动切换：按 F4 切换 manned（手动控制左侧挡板）[pongenv-v4.py](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v1-5-qlearning/pongenv-v4.py#L612-L615)
+  - 保存快照：按 F2 版本化保存 Q 表（含 left）[pongenv-v4.py](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v1-5-qlearning/pongenv-v4.py#L609-L613)
+- v5 启动与切换：
+  - 在目录下执行 `python pongenv-v5.py` [pongenv-v5.py](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v1-5-qlearning/pongenv-v5.py#L700-L717)
+  - 手动切换：按 F4 切换 manned（手动控制左侧挡板）[pongenv-v5.py](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v1-5-qlearning/pongenv-v5.py#L732-L735)
+  - 保存快照：按 F2 版本化保存左右侧 Q 表，并在退出时保存训练历史与图表 [pongenv-v5.py](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v1-5-qlearning/pongenv-v5.py#L722-L727)
+
+## 双 Bot 切换回合设置
+
+- v4：左侧陪练在每 100 回合切换一次（规则 Bot 与左侧 Q Bot）[pongenv-v4.py](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v1-5-qlearning/pongenv-v4.py#L336-L341)
+- v5：左侧陪练在每 1000 回合切换一次（更长的策略适应期）[pongenv-v5.py](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v1-5-qlearning/pongenv-v5.py#L430-L435)
+- 如需调整频率，修改上述文件中的取模参数（`% 100` 或 `% 1000`）。
+
+## 超参数总览（示例）
+
+- 物理/环境：
+  - `mu=0.3` 摩擦系数（挡板速度叠加到球的切向速度）[pongenv-v5.py](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v1-5-qlearning/pongenv-v5.py#L353)
+  - `accellerate=0.8`、`decellerate=1.2` 挡板加/减速参数 [pongenv-v5.py](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v1-5-qlearning/pongenv-v5.py#L351-L353)
+  - `pad_maxspeed=10`、`ball_maxspeed=20` 最大速度 [pongenv-v5.py](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v1-5-qlearning/pongenv-v5.py#L349-L357)
+- 智能体（v5 示例）：
+  - 左侧 Bot_Q：`alpha=0.3`、`epsilon=0.3` [pongenv-v5.py](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v1-5-qlearning/pongenv-v5.py#L369-L371)
+  - 右侧 Bot_Q：`alpha=0.2`、`epsilon=0.1` [pongenv-v5.py](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v1-5-qlearning/pongenv-v5.py#L371-L373)
+  - Bot_Q 默认：`gamma=0.9`、`decaying=0.99999995`（见类构造参数）[pongenv-v5.py](file:///c:/Users/Notebook/Desktop/work/project_dev/pong/pong-repo/pongenv-v1-5-qlearning/pongenv-v5.py#L38-L48)
